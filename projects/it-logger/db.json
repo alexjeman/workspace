@@ -1,25 +1,25 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed hard drive on workstation 005",
-      "attention": false,
-      "date": "11-13-2019",
-      "tech": "Sam Samuel 133"
-    },
-    {
-      "id": 2,
-      "message": "Workstation 0066 not working",
+      "message": "Penguin tux radius breach",
       "attention": true,
-      "date": "11-13-2019",
-      "tech": "Sam Samuel 074"
+      "tech": "Sam Samuel 133",
+      "date": "2019-11-14T10:53:57.321Z",
+      "id": 1
     },
     {
-      "id": 3,
-      "message": "Changed memory on workstation 050",
+      "message": "The core will give, the algorithm will say stop",
       "attention": false,
-      "date": "11-13-2019",
-      "tech": "Sam Samuel 311"
+      "tech": "Sam Samuel 074",
+      "date": "2019-11-14T10:58:05.336Z",
+      "id": 2
+    },
+    {
+      "message": "Type 3 needed to delay deadline",
+      "attention": true,
+      "tech": "Sam Samuel 311",
+      "date": "2019-11-14T11:00:48.150Z",
+      "id": 3
     }
   ],
   "techs": [
