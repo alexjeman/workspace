@@ -5,7 +5,8 @@ import {
   ADD_LOG,
   DELETE_LOG,
   SET_CURRENT,
-  CLEAR_CURRENT
+  CLEAR_CURRENT,
+  UPDATE_LOG
 } from "./types";
 
 // Get logs from server
@@ -90,7 +91,7 @@ export const updateLog = log => async dispatch => {
     const data = await res.json();
 
     dispatch({
-      type: DELETE_LOG,
+      type: UPDATE_LOG,
       payload: data
     });
   } catch (error) {
