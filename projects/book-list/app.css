@@ -1,0 +1,19 @@
+* {
+  list-style: none;
+  text-decoration: none;
+}
+
+.success,
+.error {
+  color: #ffffff;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+}
+
+.success {
+  background: #00FF00;
+}
+
+.error {
+  background: #ff0000;
+}
