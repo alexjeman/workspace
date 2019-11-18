@@ -1,2 +1,2 @@
 # workspace
-sanbox with all small/big/random projects
+sandbox with all small/big/random projects
