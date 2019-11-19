@@ -47,6 +47,45 @@ var UI = /** @class */ (function () {
     };
     return UI;
 }());
+// Local Storage Class
+var Store = /** @class */ (function () {
+    function Store() {
+    }
+    Store.getBooks = function () {
+        var books;
+        if (localStorage.getItem("books") === null) {
+            books = [];
+        }
+        else {
+            books = JSON.parse(localStorage.getItem("books"));
+        }
+        return books;
+    };
+    Store.displayBooks = function () {
+        var books = Store.getBooks();
+        books.forEach(function (book) {
+            var ui = new UI();
+            ui.addBookToList(book);
+        });
+    };
+    Store.addBook = function (book) {
+        var books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem("books", JSON.stringify(books));
+    };
+    Store.removeBook = function (isbn) {
+        var books = Store.getBooks();
+        books.forEach(function (book, index) {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem("books", JSON.stringify(books));
+    };
+    return Store;
+}());
+// DOM load event
+Store.displayBooks();
 // Event Listeners for add book
 document.getElementById("book-form").addEventListener("submit", function (e) {
     var titleUI = document.getElementById("title").value;
@@ -65,6 +104,8 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
     else {
         // Add book to list
         ui.addBookToList(book);
+        // Add book to local storage
+        Store.addBook(book);
         // Show success alert
         ui.showAlert("Book added!", "success");
         // Clear input fields after book is added
@@ -75,7 +116,12 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
 // Event listener for delete
 document.getElementById("book-list").addEventListener("click", function (e) {
     var ui = new UI();
+    // Delete book from UI
     ui.deleteBook(e.target);
+    // Delete book from Local Storage
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+    // Show message
     ui.showAlert("Book deleted!", "success");
+    // Prevent reload on submit
     e.preventDefault();
 });
