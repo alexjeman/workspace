@@ -84,7 +84,7 @@ class FetchAsync {
 function GetExternal() {
   const http = new FetchAsync();
   http
-    .get("https://jsonplaceholder.typicode.com/users")
+    .get(`https://api.github.com/search/users?q=${'alex'}&client_id=${'b1331574c556dbb798d4'}&client_secret=${'e14aa76f05867902eaabb93d6f34359cd18881d4'}`)
     .then(data => {
       console.log(data);
       let output = "";
