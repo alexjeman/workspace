@@ -37,6 +37,8 @@ class UI {
 
   // Show custom alert
   showAlert(message, className) {
+    // Clear previous alerts
+    this.clearAlert();
     // Create aler badge div
     const alertBadge = document.createElement("div");
     // Add alert class
@@ -51,7 +53,14 @@ class UI {
     container.insertBefore(alertBadge, search);
     // Remove alert after 3 seconds
     setTimeout(() => {
-      document.querySelector(".alertCustom").remove();
+      this.clearAlert();
     }, 3000);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alertCustom");
+    if (currentAlert) {
+      currentAlert.remove();
+    }
   }
 }
