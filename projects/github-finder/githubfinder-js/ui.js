@@ -34,4 +34,24 @@ class UI {
   clearProfile() {
     this.profile.innerHTML = "";
   }
+
+  // Show custom alert
+  showAlert(message, className) {
+    // Create aler badge div
+    const alertBadge = document.createElement("div");
+    // Add alert class
+    alertBadge.className = `alertCustom ${className}`;
+    // Add alert text
+    alertBadge.appendChild(document.createTextNode(message));
+    // Get target part element
+    const container = document.querySelector(".searchContainer");
+    // Get target child element
+    const search = document.querySelector(".search");
+    // Insert alert div element inside target parent before target chilt
+    container.insertBefore(alertBadge, search);
+    // Remove alert after 3 seconds
+    setTimeout(() => {
+      document.querySelector(".alertCustom").remove();
+    }, 3000);
+  }
 }
