@@ -1,16 +1,20 @@
 // Get canvas element by ID
-let canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 // Set canvas size
 canvas.width = 400;
 canvas.height = 400;
 // Canvas context to 2D
-let context = canvas.getContext("2d");
+const context = canvas.getContext("2d");
 // Number of stars
-var numStars = 100;
+const numStars = 100;
 // Size of stars
-var size = 1;
+const size = 1;
+// Focal length
+const fl = canvas.width;
+const centerX = canvas.width / 2;
+const centerY = canvas.width / 2;
 // Generate stars
-var stars = [];
+const stars = [];
 for (let i = 0; i < numStars; i++) {
   stars[i] = new Star();
 }
@@ -22,9 +26,20 @@ function Star() {
   this.z = Math.random() * canvas.width;
 
   this.show = function() {
+    // Add 3d effect
+    let x, y, s;
+
+    x = (this.x - centerX) * (fl / this.z);
+    x = x + centerX;
+
+    y = (this.y - centerY) * (fl / this.z);
+    y = y + centerY;
+
+    s = size * (fl / this.z);
+    // Place star on canvas
     context.beginPath();
     context.fillStyle = "#ffffff";
-    context.arc(this.x, this.y, size, 0, 2 * Math.PI);
+    context.arc(x, y, s, 0, 2 * Math.PI);
     context.fill();
   };
 }
@@ -46,5 +61,5 @@ function update() {
   draw();
   window.requestAnimationFrame(update);
 }
-console.log(stars);
+
 update();
