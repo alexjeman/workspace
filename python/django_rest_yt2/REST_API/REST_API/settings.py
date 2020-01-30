@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'MODULES_API',
     'djoser',
     'rest_framework_simplejwt',
+    "gunicorn",
 ]
 
 MIDDLEWARE = [
@@ -83,13 +84,13 @@ WSGI_APPLICATION = 'REST_API.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql', 
+#         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'mysql_server',
 #         'USER': 'root',
 #         'PASSWORD': '388180B441cb',
-#         'HOST': '127.0.0.1',   
+#         'HOST': '127.0.0.1',
 #         'PORT': '3306',
-#     }    
+#     }
 # }
 
 DATABASES = {
@@ -140,6 +141,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -152,7 +157,7 @@ CORS_ORIGIN_WHITELIST = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
