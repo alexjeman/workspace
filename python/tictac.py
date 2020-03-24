@@ -59,10 +59,9 @@ def win(current_game):
 
 play = True
 players = [1, 2]
+game_size = 3
 while play:
-    game = [[0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]]
+    game = [[0 for i in range(game_size)] for i in range(game_size)]
 
     game_won = False
     game, _ = game_board(game, display=True)
